@@ -4,7 +4,8 @@
 	position: relative;
 	display: block;
 	margin: 0;
-	padding: 0;
+  padding: 0;
+  
 
 	&__list {
 		list-style: none;
@@ -18,5 +19,6 @@
 		padding: 0 8px;
 	}
 
-	&__link {}
+	&__link {
+    color: black;}
 }

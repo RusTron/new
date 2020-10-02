@@ -1,7 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch, connect } from 'react-redux';
 import {LayoutBase } from './layouts';
-import { Header } from './pages/Header'; 
+import { Layout } from 'antd';
+import { Header } from './pages/Header';
+import { Content } from './pages/Content';
 import logo from './logo.svg';
 import './App.scss';
 
@@ -11,12 +13,16 @@ function App() {
   const dispatch = useDispatch();
 
   const increase = () => {dispatch({type: 'INCREASE'})};
-
+  const { Header: HeaderStyle, Footer, Content: ContentStyle } = Layout;
   return (
+    
     // <div className="App">
-    <LayoutBase>
-      <Header />
-    </LayoutBase>
+    <>
+      <LayoutBase>
+        <Content />
+       {/* <Header /><Authetification /> */}
+      </LayoutBase>
+    </>
   );
 }
 

@@ -1,22 +1,17 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { modalReducer } from './reducers/modalReducer';
+// import {MODAL1VISIBLE, MODAL1INVISIBLE, MODAL2VISIBLE} from '../variables/forHome';
 
-const initialState = {
-  x: 1,
-  y: 1,
-}
+// const initialState = {
+//   modal1Visible: false,
+//   y: 1,
+// }
 
-const rootReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'INCREASE':
-      return {
-        ...state,
-        x: state.x + 1,
-      };
-    default:
-      return state;
-  }
-}
-const store = createStore(rootReducer, initialState);
+const rootReducer = combineReducers({
+  modal: modalReducer,
+});
+
+const store = createStore(rootReducer);
 debugger;
 
 console.log(store.getState());

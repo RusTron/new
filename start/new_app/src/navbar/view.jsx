@@ -13,7 +13,7 @@ const View = () => {
 			<ul className={'navbar__list'}>
 				{/* {navbarRoutes.map((route) => ( */}
 					<li  className={'navbar__item'}>
-						<NavLink to={'/home'} className={'navbar__link'}>HOME</NavLink>
+						<NavLink to={'/home'} className={'navbar__link'}>Home</NavLink>
 					</li>
 				{/* ))} */}
 			</ul>

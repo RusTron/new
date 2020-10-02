@@ -2,7 +2,7 @@ import './style.scss';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { routes } from 'routes';
-import WezomLogo from '../assets/images/react-logo.svg';
+import WezomLogo from '../assets/images/wezom-logo.svg';
 
 const View = React.memo(() => {
 	return (

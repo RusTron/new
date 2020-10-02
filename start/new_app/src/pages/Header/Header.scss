@@ -1,14 +1,26 @@
-.header {
-	$this: &;
+.layout__header {
+  padding-right: 0;
+  
+  & .ant-row{
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-columns: 70px 1fr;
+  grid-gap: 0;
+}
+}
 
-	position: relative;
-	display: block;
-	height: 1px;
-	min-height: 45px;
-	margin: 0;
-	padding: 0;
+.layout__header > .ant-row > .ant-col._flex-grow {
+  display: grid;
+  grid-template-columns: 1fr;
+}
 
-	& > .ant-row {
-		height: 100%;
-	}
+.layout__header > .ant-row > .ant-col._flex-grow > .ant-row{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.ant-col {
+  display: inline-block;
 }
