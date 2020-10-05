@@ -2,11 +2,13 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Modal } from 'antd';
 import {MODAL1VISIBLE, MODAL1INVISIBLE } from '../variables/forHome';
+import { LoginReduxForm } from './LoginReduxForm';
+import './ModalWindow.scss';
 
 export const ModalWindow = () => {
-    const modal1Visible = useSelector(state=> state.modal.modal1Visible);
+  const modal1Visible = useSelector(state=> state.modal.modal1Visible);
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   
   const setModal1Visible = () => dispatch({type: MODAL1VISIBLE});
   const setModal1InVisible = () => dispatch({type: MODAL1INVISIBLE});
@@ -16,19 +18,13 @@ export const ModalWindow = () => {
   return (
     <>
       <Modal
-        title="20px to Top"
+        title="Sign in"
         style={{ top: 20 }}
         centered
         visible={modal1Visible}
-        onOk={setModal1InVisible}
-        onCancel={setModal1InVisible}
       >
-        <p>some contents...</p>
-        <p>some contents...</p>
-        <p>some contents...</p>
+        <LoginReduxForm onSubmit={()=>setModal1InVisible()}/>
       </Modal>
-      <br />
-      <br />
       {/* <Button type="primary" onClick={() => this.setModal2Visible(true)}>
         Vertically centered modal dialog
       </Button>

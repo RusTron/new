@@ -1,5 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { modalReducer } from './reducers/modalReducer';
+import { modalReducer} from './reducers/modalReducer';
+import { peopleReducer} from './reducers/peopleReducer';
+import { reducer as formReducer} from 'redux-form';
 // import {MODAL1VISIBLE, MODAL1INVISIBLE, MODAL2VISIBLE} from '../variables/forHome';
 
 // const initialState = {
@@ -9,6 +11,8 @@ import { modalReducer } from './reducers/modalReducer';
 
 const rootReducer = combineReducers({
   modal: modalReducer,
+  people: peopleReducer,
+  form: formReducer,
 });
 
 const store = createStore(rootReducer);
@@ -17,8 +21,5 @@ debugger;
 console.log(store.getState());
 
 // store.dispatch({type: 'INCREASE'});
-
-
-
 
 export default store;
