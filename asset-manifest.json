@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/new/static/css/main.d2462b1b.chunk.css",
+    "main.js": "/new/static/js/main.105488ab.chunk.js",
+    "main.js.map": "/new/static/js/main.105488ab.chunk.js.map",
+    "runtime-main.js": "/new/static/js/runtime-main.73b2fe32.js",
+    "runtime-main.js.map": "/new/static/js/runtime-main.73b2fe32.js.map",
+    "static/css/2.cb65a257.chunk.css": "/new/static/css/2.cb65a257.chunk.css",
+    "static/js/2.45fe5c87.chunk.js": "/new/static/js/2.45fe5c87.chunk.js",
+    "static/js/2.45fe5c87.chunk.js.map": "/new/static/js/2.45fe5c87.chunk.js.map",
+    "index.html": "/new/index.html",
+    "precache-manifest.97e8c8dd5e2699a4cff6be8e99adb7a2.js": "/new/precache-manifest.97e8c8dd5e2699a4cff6be8e99adb7a2.js",
+    "service-worker.js": "/new/service-worker.js",
+    "static/css/2.cb65a257.chunk.css.map": "/new/static/css/2.cb65a257.chunk.css.map",
+    "static/css/main.d2462b1b.chunk.css.map": "/new/static/css/main.d2462b1b.chunk.css.map",
+    "static/js/2.45fe5c87.chunk.js.LICENSE.txt": "/new/static/js/2.45fe5c87.chunk.js.LICENSE.txt",
+    "static/media/backdrop.jpg": "/new/static/media/backdrop.f7eab148.jpg",
+    "static/media/logo.svg": "/new/static/media/logo.5d5d9eef.svg",
+    "static/media/wezom-logo.svg": "/new/static/media/wezom-logo.324b96ae.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.73b2fe32.js",
+    "static/css/2.cb65a257.chunk.css",
+    "static/js/2.45fe5c87.chunk.js",
+    "static/css/main.d2462b1b.chunk.css",
+    "static/js/main.105488ab.chunk.js"
+  ]
+}
