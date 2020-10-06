@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ModalWindow } from '../../ModalWindow';
 import { FormForTable } from '../../FormForTable';
-import {data, columns} from '../../Table/container';
+import { Statistics } from './components/Statistics';
+import {columns} from '../../Table/container';
 import { filterPeople } from '../../store/reducers/peopleReducer';
 import { actionCreators } from '../../store/reducers/peopleReducer';
 import { NATIONALITIES } from '../../constants/nationalities';
 import { Table } from 'antd';
+import { Gallery } from './components/Gallery'
 import {getData} from '../../api/api';
 import 'antd/dist/antd.css';
 
@@ -37,8 +39,18 @@ export const Content = () => {
   return (
     <>
       <ModalWindow />
-      <FormForTable />
-      <Table columns={columns} dataSource={people} />
+      <Table 
+        columns={columns}
+        dataSource={people}
+        title={() => <FormForTable />}
+        footer={() => <Statistics people={people}/>}
+      />
+      <Gallery 
+        people={people}
+        columns={columns}
+        title={() => <FormForTable />}
+        footer={() => <Statistics people={people}/>}
+      />
     </>
   );
 }

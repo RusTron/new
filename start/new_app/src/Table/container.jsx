@@ -2,7 +2,6 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { Tag, Avatar, Typography } from 'antd';
 import {AsYouType} from 'libphonenumber-js/min';
-import { NATIONALITIES } from '../constants/nationalities';
 import './Table.scss';
 
 const { Paragraph } = Typography;
@@ -73,10 +72,13 @@ export const columns = [
     dataIndex: 'location',
     key: 'location',
     render: ({country, street, city, state, postcode}) => {
+      debugger;
       const location = [country, street.number]
       return (
       <>
-        <Paragraph copyable={{text: location}} className="ant__location"></Paragraph>
+        <Paragraph 
+          copyable={{text: `${street.number} ${street.name}, ${city}, ${state} ${postcode}`}}
+          className="ant__location"></Paragraph>
         <div className="address">
           <p className="address-country">{`/${country}/`}</p>
           <span>{`${street.number} ${street.name}, ${city}, ${state} ${postcode}`}</span>

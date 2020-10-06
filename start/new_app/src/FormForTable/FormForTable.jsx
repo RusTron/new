@@ -19,6 +19,7 @@ const { Option } = Select;
 export const FormForTable = () => {
   const [query, setQuery] = useState('');
   const [genderValue, setGenderValue] = useState('')
+  const [form] = Form.useForm();
 
   const nationalities = useSelector(({people}) =>  people.peopleData && (
     people.peopleData
@@ -29,7 +30,7 @@ export const FormForTable = () => {
 const dispatch = useDispatch();
 
 const filterByName = (value) => {
-  debugger;
+  console.log(value)
   const action = actionCreators.filterByName(value);
   dispatch(action);
 }
@@ -40,16 +41,13 @@ const selectGender = (value) => {
   dispatch(action);
 };
 
-  const selectNationality = (value) => {
-    debugger;
+  const selectNationality = (value, par) => {
     const action = actionCreators.selectNationality(value);
     dispatch(action);
   };
 
-  const clearForm = (value) => {
-    debugger;
-    setGenderValue('');
-    const action = actionCreators.clearForm(value.isTrusted);
+  const clearSearch = () => {
+    const action = actionCreators.clearForm();
     dispatch(action);
   }
 
@@ -63,30 +61,27 @@ const selectGender = (value) => {
           span: 14,
         }}
         layout="horizontal"
-        size="large"
+        form={form}
       >
 
-        <Row col={5} gutter={{ xs: 0, sm: 0, md: 0, lg: 0 } }>
+        <Row col={5}>
           <Col className="gutter-row" span={6}>
-            <Form.Item>
-            <Search
+            <Form.Item name="query">
+            <Input.Search
               placeholder="Search by full name"
               value={query}
-              onChange={({target})=> {
-                setQuery(target.value)
-                filterByName(target.value)
-              }}
+              onChange={(value)=>filterByName(value)}
             />
             </Form.Item>
           </Col>
 
           <Col className="gutter-row" span={6}>
-            <Form.Item>
+            <Form.Item
+              name="gender">
               <Select 
                 placeholder="Gender"
                 allowClear
-                value={genderValue}
-                onChange={selectGender}>
+                >
                 <Option value="male">Male</Option>
                 <Option value="female">Famale</Option>
                 <Option value="inderterminate">Identerminate</Option>
@@ -95,12 +90,12 @@ const selectGender = (value) => {
           </Col>
 
           <Col className="gutter-row" span={4}>
-            <Form.Item>
+            <Form.Item name="nationality">
               <Select
                 mode="multiple"
                 placeholder="select one country"
-                onChange={selectNationality}
                 optionLabelProp="label"
+                onSelect={selectNationality}
               >
                 {nationalities && (nationalities.map(nat =>
                 <Option value={nat} label={nat}>
@@ -120,13 +115,15 @@ const selectGender = (value) => {
           <Checkbox onChange={clearData}>Checkbox</Checkbox>
           </Col> */}
 
-          <Col className="gutter-row" span={4}>
-            <Form.Item >
-              <Button type="link" onClick={clearForm} htmlType="submit">
-                <CloseOutlined className="blue-icon"/>
-                  Clear
-              </Button>
-            </Form.Item>
+          <Col span={4}>
+            <Button type="link"
+              onClick={() => {
+                form.resetFields();
+                clearSearch()}} 
+            >
+              <CloseOutlined className="blue-icon"/>
+              Clear
+            </Button>
           </Col>
         </Row>
       </Form>
