@@ -12,19 +12,18 @@ const { Option } = Select;
 
 export const FormForTable = () => {
   const [query, setQuery] = useState('');
-  const [genderValue, setGenderValue] = useState('')
   const [form] = Form.useForm();
+  const [checked, setChecked] = useState(false)
 
   const nationalities = useSelector(({people}) =>  people.peopleData && (
     people.peopleData
-      .map(person=> person.nat.name)
+      .map(person=> person.nationality.name)
       .filter((nat, i , arr)=> arr.indexOf(nat) === i)
   ));
 
 const dispatch = useDispatch();
 
 const filterByName = (value) => {
-  console.log(value)
   setQuery(value);
   const action = actionCreators.filterByName(value);
   dispatch(action);
@@ -47,7 +46,6 @@ const selectGender = (value) => {
   }
 
   const clearData = ({checked : value}) => {
-    debugger;
     const action = actionCreators.clearData(value);
     dispatch(action);
   }
@@ -92,7 +90,7 @@ const selectGender = (value) => {
                 mode="multiple"
                 placeholder="select one country"
                 optionLabelProp="label"
-                onSelect={selectNationality}
+                onChange={selectNationality}
               >
                 {nationalities && (nationalities.map(nat =>
                 <Option value={nat} label={nat}>
@@ -108,14 +106,25 @@ const selectGender = (value) => {
 
           <Form.Item>
             <Col className="gutter-row" >
-              <Checkbox onChange={({target})=>clearData(target)}>I am creator</Checkbox>
+              <Checkbox 
+                checked={checked}
+                onChange={({target})=> {
+                  clearData(target)
+                  setChecked(!checked)}}
+              >
+                I am creator
+              </Checkbox>
             </Col>
           </Form.Item>
 
             <Button type="link"
               onClick={() => {
                 form.resetFields();
-                clearSearch()}} 
+                clearSearch();
+                setChecked(false);
+                clearData({checked: false})
+              }}
+                className="clear-button"
             >
               <CloseOutlined className="blue-icon"/>
               Clear

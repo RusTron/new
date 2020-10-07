@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 38px 91px;
   margin-bottom: 20px;
+  margin-top: 15px;
 
   & .ant-radio-group > .ant-btn{
     width: 32px;
@@ -29,6 +30,12 @@
   height: 32px;
 }
 
-// .ant-radio-group > .ant-radio-button-wrapper > .ant-radio-button{
-//   width: 549px;
-// }
+.ant-list > .ant-list-footer {
+  background-color: #fafafa;
+  padding: 10px;
+}
+
+.ant-table-footer{
+  background-color: #fff;
+  margin-top: 14px;
+}

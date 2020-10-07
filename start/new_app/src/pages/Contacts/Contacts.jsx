@@ -18,6 +18,8 @@ import 'antd/dist/antd.css';
 import './Contacts.scss';
 
 export const Contacts = () => {
+  const [loading, setLoading] = useState(false);
+
   const [view, setView] = useState(localStorage.getItem('view') 
     && JSON.parse(localStorage.getItem('view')) || 'table');
 
@@ -39,10 +41,11 @@ export const Contacts = () => {
           .map(person=> ({ 
             ...person,
             name: `${person.name.title}. ${person.name.first} ${person.name.last}`,
-            nat: NATIONALITIES[person.nat]
+            nationality: NATIONALITIES[person.nat],
           })
         ));
       dispatch(action);
+      setLoading(false);
     })
   );
 
@@ -56,7 +59,16 @@ export const Contacts = () => {
     <>
       <div className="contacts__title">
         <span><h1 className="contacts__title-text">Contacts</h1></span>
-        <Button shape="circle" icon={<ReloadOutlined />} />
+        <Button 
+          shape="circle"
+          icon={<ReloadOutlined />}
+          onClick={()=> {
+            setLoading(true);
+            loadData();
+          }}
+          loading={loading}
+          
+        />
         <Radio.Group defaultValue={view}>
           <Button 
             value="table" 

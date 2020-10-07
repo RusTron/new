@@ -15,7 +15,7 @@ export const actionCreators = {
   }),
   setError: (value)=>({
       type: SETERROR,
-       error: value,
+      error: value,
   }),
   filterByName: (item) => ({
     type: FILTERBYNAME,
@@ -59,7 +59,7 @@ export const filterPeople = ({people}) => {
   };
 
   if (selectedNationality && selectedNationality.length) {
-    persons = persons.filter(item=> selectedNationality.includes(item.nat.name))
+    persons = persons.filter(item=> selectedNationality.includes(item.nationality.name))
   };
 
   if (selectedGender) {
@@ -72,7 +72,7 @@ export const filterPeople = ({people}) => {
 const contactsInitialState = () => ({
   peopleData: [],
   searchValue: '',
-  selectedNationality: '',
+  selectedNationality: [],
   selectedGender: '',
   clear: false,
   data: true,
@@ -105,7 +105,7 @@ export const peopleReducer = (state = contactsInitialState, action) => {
     case  SETSELECTEDNATIONALITY:
       return {
         ...state,
-        selectedNationality: action.selectedNationality,
+        selectedNationality: [...action.selectedNationality],
       };
     case  CLEARFORM:
       return {

@@ -4,17 +4,14 @@ import {LayoutBase } from './layouts';
 import { Contacts } from './pages/Contacts';
 import './App.scss';
 
-function App() {
+const App = () => {
   return (
-    <>
-      <LayoutBase>
-        <Switch>
-          <Route path="/contacts" component={Contacts}/>
-        </Switch>
-      </LayoutBase>
-    </>
+    <LayoutBase>
+      <Switch>
+        <Route path="/contacts" component={Contacts}/>
+      </Switch>
+    </LayoutBase>
   );
 }
-
 
 export default App;

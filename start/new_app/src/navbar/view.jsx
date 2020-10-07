@@ -1,22 +1,28 @@
 import './style.scss';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { routes } from 'routes';
 
-const View = () => {
-	// const navbarRoutes = useMemo(() => [
-	// 	{ name: 'Home', key: 'home' },
-	// ], []);
-
+const View = ({location}) => {
+console.log(location);
 	return (
 		<div className={'navbar'}>
 			<ul className={'navbar__list'}>
-				{/* {navbarRoutes.map((route) => ( */}
-					<li  className={'navbar__item'}>
-						<NavLink to={'/home'} className={'navbar__link'}>Home</NavLink>
-						<NavLink to={'/contacts'} className={'navbar__link'}>Contacts</NavLink>
-					</li>
-				{/* ))} */}
+        <li  className={'navbar__item'}>
+          <NavLink 
+            to={'/home'} 
+            className={'navbar__link'}
+            activeClassName={'active-link'}
+          >
+            Home
+          </NavLink>
+          <NavLink 
+            to={'/contacts'}
+            className={'navbar__link'}
+            activeClassName={'active-link'}
+          >
+            Contacts
+          </NavLink>
+        </li>
 			</ul>
 		</div>
 	);
