@@ -5,4 +5,5 @@ console.log(number);
 export const getData = () => {
   return fetch(`${DATA_URL}${number}`)
     .then(response=> response.json())
+    .catch((e)=> ({error: e}))
 }

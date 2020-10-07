@@ -2,16 +2,10 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { actionCreators } from '../store/reducers/peopleReducer';
 import { filterPeople } from '../store/reducers/peopleReducer';
-import {
-  Form,
-  Input,
-  Button,
-  Row,
-  Col,
-  Select
-} from 'antd';
+import { Form, Input, Button, Row, Col, Select, Checkbox} from 'antd';
 import { CloseOutlined} from '@ant-design/icons';
 import 'antd/dist/antd.css';
+import './FormForTable.scss';
 
 const { Search } = Input;
 const { Option } = Select;
@@ -31,56 +25,59 @@ const dispatch = useDispatch();
 
 const filterByName = (value) => {
   console.log(value)
+  setQuery(value);
   const action = actionCreators.filterByName(value);
   dispatch(action);
 }
 
 const selectGender = (value) => {
-  setGenderValue(value);
   const action = actionCreators.selectGender(value);
   dispatch(action);
 };
 
-  const selectNationality = (value, par) => {
+  const selectNationality = (value) => {
     const action = actionCreators.selectNationality(value);
     dispatch(action);
   };
 
   const clearSearch = () => {
+    setQuery('')
     const action = actionCreators.clearForm();
     dispatch(action);
   }
 
+  const clearData = ({checked : value}) => {
+    debugger;
+    const action = actionCreators.clearData(value);
+    dispatch(action);
+  }
+
    return (
-    <>
+    <div className="contacts-form">
       <Form
-        labelCol={{
-          span: 4,
-        }}
-        wrapperCol={{
-          span: 14,
-        }}
         layout="horizontal"
         form={form}
       >
 
-        <Row col={5}>
-          <Col className="gutter-row" span={6}>
+        <Row>
+          <Col className="gutter-row" >
             <Form.Item name="query">
             <Input.Search
               placeholder="Search by full name"
               value={query}
-              onChange={(value)=>filterByName(value)}
+              onChange={({target})=> filterByName(target.value)}
+              allowClear
             />
             </Form.Item>
           </Col>
 
-          <Col className="gutter-row" span={6}>
+          <Col className="gutter-row">
             <Form.Item
               name="gender">
               <Select 
                 placeholder="Gender"
                 allowClear
+                onSelect={selectGender}
                 >
                 <Option value="male">Male</Option>
                 <Option value="female">Famale</Option>
@@ -89,7 +86,7 @@ const selectGender = (value) => {
             </Form.Item>
           </Col>
 
-          <Col className="gutter-row" span={4}>
+          <Col className="gutter-row" >
             <Form.Item name="nationality">
               <Select
                 mode="multiple"
@@ -100,22 +97,21 @@ const selectGender = (value) => {
                 {nationalities && (nationalities.map(nat =>
                 <Option value={nat} label={nat}>
                   <div className="demo-option-label-item" key={nat}>
-                    <span role="img" aria-label={nat} key={nat}>
-                    
-                    </span>
+                    <span role="img" aria-label={nat} key={nat}></span>
                     {nat}
                   </div>
                 </Option>))}
-                
+
               </Select>
             </Form.Item>
           </Col>
 
-          {/* <Col className="gutter-row" span={4}>
-          <Checkbox onChange={clearData}>Checkbox</Checkbox>
-          </Col> */}
+          <Form.Item>
+            <Col className="gutter-row" >
+              <Checkbox onChange={({target})=>clearData(target)}>I am creator</Checkbox>
+            </Col>
+          </Form.Item>
 
-          <Col span={4}>
             <Button type="link"
               onClick={() => {
                 form.resetFields();
@@ -124,9 +120,8 @@ const selectGender = (value) => {
               <CloseOutlined className="blue-icon"/>
               Clear
             </Button>
-          </Col>
         </Row>
       </Form>
-    </>
+    </div>
   );
 };

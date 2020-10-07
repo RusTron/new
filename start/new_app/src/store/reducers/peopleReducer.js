@@ -4,14 +4,18 @@ import {
   SETSELECTEDGENDER,
   SETSELECTEDNATIONALITY,
   CLEARFORM,
+  CLEARDATA,
+  SETERROR,
 } from '../../variables/forContacts';
-import { NATIONALITIES } from '../../constants/nationalities';
-
 
 export const actionCreators = {
-   setData: (items) => ({
+  setData: (items) => ({
     type: SETPEOPLE,
     peopleData: items,
+  }),
+  setError: (value)=>({
+      type: SETERROR,
+       error: value,
   }),
   filterByName: (item) => ({
     type: FILTERBYNAME,
@@ -25,35 +29,43 @@ export const actionCreators = {
     type: SETSELECTEDNATIONALITY,
     selectedNationality: item,
   }),
-  clearForm: (item) => ({
+  clearForm: () => ({
     type: CLEARFORM,
-    active: true,
+    clear: true,
+  }),
+  clearData: (value) => ({
+    type: CLEARDATA,
+    data: value,
   })
 }
 
 export const filterPeople = ({people}) => {
   debugger;
 
-  const {peopleData, searchValue, selectedNationality, selectedGender} = people;
+  const {peopleData, searchValue, selectedNationality, selectedGender, data} = people;
 
   let persons = [];
   console.log(people);
-  if(peopleData){
+  if (data) {
+    return persons;
+  }
+  if (peopleData) {
     persons = [...peopleData];
   };
 
-  if(searchValue){
-    persons = persons.filter(item=> item.name.includes(searchValue.toLowerCase()))
+  if (searchValue) {
+    persons = persons.filter(item=> 
+      item.name.toLowerCase().includes(searchValue.toLowerCase()))
   };
 
-  if(selectedNationality && selectedNationality.length){
+  if (selectedNationality && selectedNationality.length) {
     persons = persons.filter(item=> selectedNationality.includes(item.nat.name))
   };
 
-  if(selectedGender){
+  if (selectedGender) {
     persons = persons.filter(person=> person.gender === selectedGender)
   }
- 
+
   return persons;
 }
 
@@ -62,11 +74,19 @@ const contactsInitialState = () => ({
   searchValue: '',
   selectedNationality: '',
   selectedGender: '',
+  clear: false,
+  data: true,
+  error: false,
 });
 
 export const peopleReducer = (state = contactsInitialState, action) => {
   debugger;
   switch (action.type) {
+    case SETERROR:
+      return {
+        ...state,
+        error: action.error,
+      };
     case SETPEOPLE:
       return {
         ...state,
@@ -93,9 +113,14 @@ export const peopleReducer = (state = contactsInitialState, action) => {
         searchValue: '',
         selectedNationality: '',
         selectedGender: '',
-        peopleData: action.peopleData,
+        clear: false,
       };
-  
+    case  CLEARDATA:
+      return {
+        ...state,
+        data: action.data,
+      }
+
     default:
       return state;
   }

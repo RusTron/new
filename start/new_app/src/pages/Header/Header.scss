@@ -1,5 +1,4 @@
 .layout__header {
-  padding-right: 0;
   
   & .ant-row{
   display: grid;
@@ -7,12 +6,8 @@
   width: 100%;
   grid-template-columns: 70px 1fr;
   grid-gap: 0;
-}
-}
-
-.layout__header > .ant-row > .ant-col._flex-grow {
-  display: grid;
-  grid-template-columns: 1fr;
+  margin: 3px 0;
+  }
 }
 
 .layout__header > .ant-row > .ant-col._flex-grow > .ant-row{

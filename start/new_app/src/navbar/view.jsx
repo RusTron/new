@@ -14,6 +14,7 @@ const View = () => {
 				{/* {navbarRoutes.map((route) => ( */}
 					<li  className={'navbar__item'}>
 						<NavLink to={'/home'} className={'navbar__link'}>Home</NavLink>
+						<NavLink to={'/contacts'} className={'navbar__link'}>Contacts</NavLink>
 					</li>
 				{/* ))} */}
 			</ul>

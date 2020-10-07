@@ -1,31 +1,16 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch, connect } from 'react-redux';
+import React from 'react';
+import {Route, Switch} from 'react-router-dom';
 import {LayoutBase } from './layouts';
-import { Content } from './pages/Content';
-import { actionCreators } from './store/reducers/peopleReducer';
-import { getData } from './api/api';
-import logo from './logo.svg';
+import { Contacts } from './pages/Contacts';
 import './App.scss';
 
 function App() {
-  const dispatch = useDispatch();
-
-  // useEffect(()=> {
-  //   debugger;
-  //   getData()
-  //     .then(data=> {
-  //       const action  = actionCreators.setData(data.results);
-  //       dispatch(action);
-  //   })
-  // }, []);
-
   return (
-    
-    // <div className="App">
     <>
       <LayoutBase>
-        <Content />
-       {/* <Header /><Authetification /> */}
+        <Switch>
+          <Route path="/contacts" component={Contacts}/>
+        </Switch>
       </LayoutBase>
     </>
   );
