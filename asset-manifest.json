@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/new/static/css/main.52c91612.chunk.css",
-    "main.js": "/new/static/js/main.aa7bc2bf.chunk.js",
-    "main.js.map": "/new/static/js/main.aa7bc2bf.chunk.js.map",
+    "main.css": "/new/static/css/main.07fba3f6.chunk.css",
+    "main.js": "/new/static/js/main.ef254141.chunk.js",
+    "main.js.map": "/new/static/js/main.ef254141.chunk.js.map",
     "runtime-main.js": "/new/static/js/runtime-main.73b2fe32.js",
     "runtime-main.js.map": "/new/static/js/runtime-main.73b2fe32.js.map",
     "static/css/2.cb65a257.chunk.css": "/new/static/css/2.cb65a257.chunk.css",
     "static/js/2.2fafab0e.chunk.js": "/new/static/js/2.2fafab0e.chunk.js",
     "static/js/2.2fafab0e.chunk.js.map": "/new/static/js/2.2fafab0e.chunk.js.map",
     "index.html": "/new/index.html",
-    "precache-manifest.0fad6b99f8701a7694afeabe105e2db1.js": "/new/precache-manifest.0fad6b99f8701a7694afeabe105e2db1.js",
+    "precache-manifest.3dcea5581d6b0eeb97604fbfc1ce48f6.js": "/new/precache-manifest.3dcea5581d6b0eeb97604fbfc1ce48f6.js",
     "service-worker.js": "/new/service-worker.js",
     "static/css/2.cb65a257.chunk.css.map": "/new/static/css/2.cb65a257.chunk.css.map",
-    "static/css/main.52c91612.chunk.css.map": "/new/static/css/main.52c91612.chunk.css.map",
+    "static/css/main.07fba3f6.chunk.css.map": "/new/static/css/main.07fba3f6.chunk.css.map",
     "static/js/2.2fafab0e.chunk.js.LICENSE.txt": "/new/static/js/2.2fafab0e.chunk.js.LICENSE.txt",
     "static/media/backdrop.jpg": "/new/static/media/backdrop.f7eab148.jpg",
     "static/media/wezom-logo.svg": "/new/static/media/wezom-logo.324b96ae.svg"
@@ -21,7 +21,7 @@
     "static/js/runtime-main.73b2fe32.js",
     "static/css/2.cb65a257.chunk.css",
     "static/js/2.2fafab0e.chunk.js",
-    "static/css/main.52c91612.chunk.css",
-    "static/js/main.aa7bc2bf.chunk.js"
+    "static/css/main.07fba3f6.chunk.css",
+    "static/js/main.ef254141.chunk.js"
   ]
 }
