@@ -59,7 +59,7 @@ export const Statistics = ({people}) => {
           column={6}
         >
           {Object.keys(nationalities).map(nat => 
-            <Descriptions.Item label={nat}>{nationalities[nat]}</Descriptions.Item>
+            <Descriptions.Item label={nat} key={nat}>{nationalities[nat]}</Descriptions.Item>
           )}
         </Descriptions>
       </div>

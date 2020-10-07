@@ -59,7 +59,6 @@ export const columns = [
     text: 'location',
     render: (phone, row)=>{
       const newPhone = new AsYouType(row).input(phone);
-      console.log(row);
       return (
         <div className="one_row">
           <Paragraph copyable={{text: newPhone}} ></Paragraph>
@@ -72,9 +71,7 @@ export const columns = [
     title: 'Location',
     dataIndex: 'location',
     key: 'location',
-    render: ({country, street, city, state, postcode}) => {
-      debugger;
-      return (
+    render: ({country, street, city, state, postcode}) => 
       <>
         <Paragraph 
           copyable={{text: `${street.number} ${street.name}, ${city}, ${state} ${postcode}`}}
@@ -84,7 +81,6 @@ export const columns = [
           <span>{`${street.number} ${street.name}, ${city}, ${state} ${postcode}`}</span>
         </div>
       </>
-      )}
   },
   {
     title: 'Nationality',

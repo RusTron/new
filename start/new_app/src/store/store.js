@@ -6,10 +6,6 @@ const rootReducer = combineReducers({
   people: peopleReducer,
   form: formReducer,
 });
-
 const store = createStore(rootReducer);
-debugger;
-
-console.log(store.getState());
 
 export default store;

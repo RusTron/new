@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { actionCreators } from '../store/reducers/peopleReducer';
-import { filterPeople } from '../store/reducers/peopleReducer';
 import { Form, Input, Button, Row, Col, Select, Checkbox} from 'antd';
 import { CloseOutlined} from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import './FormForTable.scss';
 
-const { Search } = Input;
 const { Option } = Select;
 
 export const FormForTable = () => {
@@ -93,7 +91,7 @@ const selectGender = (value) => {
                 onChange={selectNationality}
               >
                 {nationalities && (nationalities.map(nat =>
-                <Option value={nat} label={nat}>
+                <Option value={nat} label={nat} key={nat}>
                   <div className="demo-option-label-item" key={nat}>
                     <span role="img" aria-label={nat} key={nat}></span>
                     {nat}
@@ -105,7 +103,7 @@ const selectGender = (value) => {
           </Col>
 
           <Form.Item>
-            <Col className="gutter-row" >
+            <Col className="gutter-row form-checkox" >
               <Checkbox 
                 checked={checked}
                 onChange={({target})=> {

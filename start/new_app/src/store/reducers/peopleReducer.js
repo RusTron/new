@@ -40,7 +40,6 @@ export const actionCreators = {
 }
 
 export const filterPeople = ({people}) => {
-  debugger;
 
   const {peopleData, searchValue, selectedNationality, selectedGender, data} = people;
 
@@ -80,7 +79,6 @@ const contactsInitialState = () => ({
 });
 
 export const peopleReducer = (state = contactsInitialState, action) => {
-  debugger;
   switch (action.type) {
     case SETERROR:
       return {
