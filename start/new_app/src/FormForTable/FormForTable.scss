@@ -1,5 +1,9 @@
 .blue-icon {
-  color: blue;
+  color: #94CFFF;
+}
+
+.grey-icon > svg{
+  color: #efefef5e;
 }
 
 .ant-list > .ant-list-header{
@@ -82,10 +86,6 @@
   & .ant-btn {
     padding-top: 5px;
   }
-
-  & .clear-button svg {
-    fill: #40A9FF;
-  }
 }
 
 .ant-table {
@@ -106,3 +106,7 @@
 .list__card-container .ant-col.gutter-row.form-checkox {
   margin-left: -6px !important;
 };
+
+.select-gender .ant-select-selection-item{
+  margin-top: 5px;
+}

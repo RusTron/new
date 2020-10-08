@@ -58,7 +58,8 @@ export const columns = [
     key: 'phone',
     text: 'location',
     render: (phone, row)=>{
-      const newPhone = new AsYouType(row).input(phone);
+      console.log(row);
+      const newPhone = new AsYouType(row.nat).input(phone);
       return (
         <div className="one_row">
           <Paragraph copyable={{text: newPhone}} ></Paragraph>
@@ -84,8 +85,8 @@ export const columns = [
   },
   {
     title: 'Nationality',
-    key: 'nat',
-    dataIndex: 'nat',
+    key: 'nationality',
+    dataIndex: 'nationality',
     align: 'center',
     render: tag => (
         <Tag color={tag.color}>

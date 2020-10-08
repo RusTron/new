@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { actionCreators } from '../store/reducers/peopleReducer';
 import { Form, Input, Button, Row, Col, Select, Checkbox} from 'antd';
 import { CloseOutlined} from '@ant-design/icons';
+import { classNames } from 'classnames';
 import 'antd/dist/antd.css';
 import './FormForTable.scss';
 
 const { Option } = Select;
 
-export const FormForTable = () => {
+export const FormForTable = ({view}) => {
   const [query, setQuery] = useState('');
   const [form] = Form.useForm();
-  const [checked, setChecked] = useState(false)
+  const [checked, setChecked] = useState(false);
+  const [clearActive, setClearActive] = useState(false);
 
   const nationalities = useSelector(({people}) =>  people.peopleData && (
     people.peopleData
@@ -19,20 +21,28 @@ export const FormForTable = () => {
       .filter((nat, i , arr)=> arr.indexOf(nat) === i)
   ));
 
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-const filterByName = (value) => {
-  setQuery(value);
-  const action = actionCreators.filterByName(value);
-  dispatch(action);
-}
+  useEffect(()=> {
+    form.resetFields();
+    clearSearch();
+    clearData({checked: false});
+  }, [view])
 
-const selectGender = (value) => {
-  const action = actionCreators.selectGender(value);
-  dispatch(action);
-};
+  const filterByName = (value) => {
+    setQuery(value);
+    const action = actionCreators.filterByName(value);
+    dispatch(action);
+  }
+
+  const selectGender = (value) => {
+    value ? setClearActive(true) : setClearActive(false);
+    const action = actionCreators.selectGender(value);
+    dispatch(action);
+  };
 
   const selectNationality = (value) => {
+     value.length ? setClearActive(true) : setClearActive(false);
     const action = actionCreators.selectNationality(value);
     dispatch(action);
   };
@@ -73,10 +83,11 @@ const selectGender = (value) => {
               <Select 
                 placeholder="Gender"
                 allowClear
-                onSelect={selectGender}
+                onChange={selectGender}
+                className={"select-gender"}
                 >
                 <Option value="male">Male</Option>
-                <Option value="female">Famale</Option>
+                <Option value="female">Female</Option>
                 <Option value="inderterminate">Identerminate</Option>
               </Select>
             </Form.Item>
@@ -86,7 +97,7 @@ const selectGender = (value) => {
             <Form.Item name="nationality">
               <Select
                 mode="multiple"
-                placeholder="select one country"
+                placeholder="Nationality"
                 optionLabelProp="label"
                 onChange={selectNationality}
               >
@@ -120,11 +131,12 @@ const selectGender = (value) => {
                 form.resetFields();
                 clearSearch();
                 setChecked(false);
-                clearData({checked: false})
+                clearData({checked: false});
               }}
                 className="clear-button"
+                disabled={!clearActive && !query && !checked}
             >
-              <CloseOutlined className="blue-icon"/>
+              <CloseOutlined />
               Clear
             </Button>
         </Row>

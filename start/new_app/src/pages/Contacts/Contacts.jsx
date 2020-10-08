@@ -6,7 +6,7 @@ import { columns } from '../../Table/container';
 import { filterPeople } from '../../store/reducers/peopleReducer';
 import { actionCreators } from '../../store/reducers/peopleReducer';
 import { NATIONALITIES } from '../../constants/nationalities';
-import { Table, Radio, Button } from 'antd';
+import { Table, Radio, Button, notification } from 'antd';
 import { Gallery } from './components/Gallery'
 import { getData } from '../../api/api';
 import {
@@ -19,7 +19,6 @@ import './Contacts.scss';
 
 export const Contacts = () => {
   const [loading, setLoading] = useState(false);
-
   const [view, setView] = useState(localStorage.getItem('view') 
     && JSON.parse(localStorage.getItem('view')) || 'table');
 
@@ -34,8 +33,9 @@ export const Contacts = () => {
     getData()
       .then(data=> {
         if (data.error) {
-          const action =  actionCreators.setError(data.error)
-          return dispatch(action);
+          console.log(data.error);
+          openNotificationWithIcon('error');
+          return;
         }
         const action  = actionCreators.setData(data.results
           .map(person=> ({ 
@@ -48,6 +48,14 @@ export const Contacts = () => {
       setLoading(false);
     })
   );
+
+  const openNotificationWithIcon = type => {
+    notification[type]({
+      message: 'Network Error',
+      description:
+        'Please, try again later',
+    });
+  };
 
   useEffect(()=> {
     loadData();
@@ -78,7 +86,8 @@ export const Contacts = () => {
             <UnorderedListOutlined />
           </Button>
           <Button type="button" value="gallery"
-            onClick={()=>saveView("gallery")}
+            onClick={()=>
+              saveView("gallery")}
             type={view==="gallery" && "primary"}
           >
           <AppstoreOutlined />
@@ -89,13 +98,13 @@ export const Contacts = () => {
       ? <Table 
         columns={columns}
         dataSource={people}
-        title={() => <FormForTable />}
+        title={() => <FormForTable view={view}/>}
         footer={() => <Statistics people={people}/>}
         />
       : <Gallery 
           people={people}
           columns={columns}
-          title={() => <FormForTable />}
+          title={() => <FormForTable view={view}/>}
           footer={() => <Statistics people={people}/>}
         />
       }

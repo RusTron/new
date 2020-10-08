@@ -20,7 +20,7 @@ export const Gallery = ({people, title, columns}) => (
     }}
     className="list__card-container"
     renderItem={person => {
-      const {picture, name, dob, email, phone, nat, location} = person;
+      const {picture, name, dob, email, phone, nat, location, nationality} = person;
       return (
       <List.Item xs={5}>
         <Card
@@ -48,7 +48,7 @@ export const Gallery = ({people, title, columns}) => (
               {columns.find(item => item.key === "phone").render(phone, nat)}
               {columns.find(item => item.key === "location").render(location)}
               <Divider dashed />
-              {columns.find(item => item.key === "nat").render(nat)}
+              {columns.find(item => item.key === "nationality").render(nationality)}
             </>
           } 
         />
