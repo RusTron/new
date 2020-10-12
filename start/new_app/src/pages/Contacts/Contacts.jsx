@@ -5,6 +5,7 @@ import { Statistics } from './components/Statistics';
 import { columns } from '../../Table/container';
 import { filterPeople } from '../../store/reducers/peopleReducer';
 import { actionCreators } from '../../store/reducers/peopleReducer';
+import { actions } from '../../store/reducers/loadingReducer';
 import { NATIONALITIES } from '../../constants/nationalities';
 import { Table, Radio, Button, notification } from 'antd';
 import { Gallery } from './components/Gallery'
@@ -17,37 +18,27 @@ import {
 import 'antd/dist/antd.css';
 import './Contacts.scss';
 
-export const Contacts = () => {
-  const [loading, setLoading] = useState(false);
-  const [view, setView] = useState(localStorage.getItem('view') 
-    && JSON.parse(localStorage.getItem('view')) || 'table');
+const loadData = (dispatch) => {
+  dispatch(actions.startLoading());
 
-  const saveView = (value) => {
-    localStorage.setItem('view', JSON.stringify(value));
-    setView(value);
-  }
-
-  const dispatch = useDispatch();
-
-  const loadData = () => (
-    getData()
-      .then(data=> {
-        if (data.error) {
-          console.log(data.error);
-          openNotificationWithIcon('error');
-          return;
-        }
-        const action  = actionCreators.setData(data.results
-          .map(person=> ({ 
-            ...person,
-            name: `${person.name.title}. ${person.name.first} ${person.name.last}`,
-            nationality: NATIONALITIES[person.nat],
-          })
-        ));
-      dispatch(action);
-      setLoading(false);
-    })
-  );
+  return getData()
+    .then(data=> {
+      if (data.error) {
+        openNotificationWithIcon('error');
+        dispatch(actions.finishLoading());
+        return;
+      }
+      const action  = actionCreators.setData(data.results
+        .map(person=> ({ 
+          ...person,
+          name: `${person.name.title}. ${person.name.first} ${person.name.last}`,
+          nationality: NATIONALITIES[person.nat],
+        })
+      ));
+    dispatch(action);
+    dispatch(actions.finishLoading());
+  })
+};
 
   const openNotificationWithIcon = type => {
     notification[type]({
@@ -57,8 +48,19 @@ export const Contacts = () => {
     });
   };
 
+export const Contacts = () => {
+  const [view, setView] = useState(localStorage.getItem('view') 
+    && JSON.parse(localStorage.getItem('view')) || 'table');
+  const dispatch = useDispatch();
+  const loading = useSelector(state => state.loading);
+
+  const saveView = (value) => {
+    localStorage.setItem('view', JSON.stringify(value));
+    setView(value);
+  }
+
   useEffect(()=> {
-    loadData();
+    dispatch(loadData);
   }, []);
 
   const people = useSelector(state=> filterPeople(state));
@@ -71,8 +73,7 @@ export const Contacts = () => {
           shape="circle"
           icon={<ReloadOutlined />}
           onClick={()=> {
-            setLoading(true);
-            loadData();
+            dispatch(loadData);
           }}
           loading={loading}
           

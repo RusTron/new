@@ -45,7 +45,7 @@ export const Gallery = ({people, title, columns}) => (
           description={
             <>
               {columns.find(item => item.key === "email").render(email)}
-              {columns.find(item => item.key === "phone").render(phone, nat)}
+              {columns.find(item => item.key === "phone").render(phone, person)}
               {columns.find(item => item.key === "location").render(location)}
               <Divider dashed />
               {columns.find(item => item.key === "nationality").render(nationality)}

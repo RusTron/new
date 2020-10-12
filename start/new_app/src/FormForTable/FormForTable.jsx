@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { actionCreators } from '../store/reducers/peopleReducer';
 import { Form, Input, Button, Row, Col, Select, Checkbox} from 'antd';
 import { CloseOutlined} from '@ant-design/icons';
-import { classNames } from 'classnames';
 import 'antd/dist/antd.css';
 import './FormForTable.scss';
 
@@ -132,9 +131,10 @@ export const FormForTable = ({view}) => {
                 clearSearch();
                 setChecked(false);
                 clearData({checked: false});
+                setClearActive(false);
               }}
-                className="clear-button"
-                disabled={!clearActive && !query && !checked}
+              className="clear-button"
+              disabled={!clearActive && !query && !checked}
             >
               <CloseOutlined />
               Clear

@@ -44,7 +44,7 @@ export const filterPeople = ({people}) => {
   const {peopleData, searchValue, selectedNationality, selectedGender, data} = people;
 
   let persons = [];
-  console.log(people);
+
   if (data) {
     return persons;
   }
@@ -78,7 +78,7 @@ const contactsInitialState = () => ({
   error: false,
 });
 
-export const peopleReducer = (state = contactsInitialState, action) => {
+const peopleReducer = (state = contactsInitialState, action) => {
   switch (action.type) {
     case SETERROR:
       return {
@@ -123,3 +123,5 @@ export const peopleReducer = (state = contactsInitialState, action) => {
       return state;
   }
 };
+
+export default peopleReducer;
