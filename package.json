@@ -2,6 +2,7 @@
   "name": "new",
   "homepage": ".",
   "version": "0.1.0",
+  "author": "RusTron",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
